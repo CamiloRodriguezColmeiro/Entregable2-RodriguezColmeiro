@@ -1,0 +1,49 @@
+/*Animaciones de deslizamiento*/
+.animar{
+    animation-duration: 3s;
+    animation-name: slideinr;
+  }
+  
+  @keyframes slideinr {
+    from {
+      transform: translateX(100%);
+      width: 300%;
+    }
+  
+    to {
+      transform: translateX(0%);
+      width: 100%;
+    }
+  }
+
+.animal{
+    animation-duration: 3s;
+    animation-name: slideinl;
+  }
+  
+  @keyframes slideinl {
+    from {
+      transform: translateX(-100%);
+      width: 300%;
+    }
+  
+    to {
+      transform: translateX(0%);
+      width: 100%;
+    }
+  }
+  /*Animacion de aparicion*/
+  .aparecer{
+    animation-duration: 2s;
+    animation-name: fadein;
+  }
+  @keyframes fadein {
+    0% { 
+        opacity: 0;
+        transform: translate(-10%, -10%)
+    }
+    100% { 
+        opacity: 1;
+        transform: translate(0%, 0%);
+    }
+  }
