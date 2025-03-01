@@ -17,7 +17,7 @@ html {
 }
 
 #exampleFormControlTextarea1 {
-  height: 400px;
+  height: 200px;
 }
 
 @media (min-width: 1200px) {
@@ -28,7 +28,7 @@ html {
     width: 450px;
   }
   #exampleFormControlTextarea1 {
-    height: 600px;
+    height: 320px;
   }
 }
 /*fuentes*/
