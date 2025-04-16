@@ -19,6 +19,15 @@ html {
 #exampleFormControlTextarea1 {
   height: 200px;
 }
+.wrapper {
+  min-height: 100vh; /* altura mínima igual al alto de la pantalla */
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1; /* esto empuja el footer hacia abajo */
+}
 
 @media (min-width: 1200px) {
   .menu {
