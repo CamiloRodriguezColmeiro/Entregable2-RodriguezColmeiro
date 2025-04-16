@@ -16,7 +16,7 @@ html {
   width: 350px;
 }
 
-#exampleFormControlTextarea1 {
+#areaTexto {
   height: 200px;
 }
 .wrapper {
@@ -36,7 +36,7 @@ main {
   .altura {
     width: 450px;
   }
-  #exampleFormControlTextarea1 {
+  #areaTexto {
     height: 320px;
   }
 }

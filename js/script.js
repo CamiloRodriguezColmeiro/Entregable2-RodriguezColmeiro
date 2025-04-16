@@ -58,8 +58,7 @@ const bebidas = [
       id : 9
     },
   ];
-  let carritoProductos = JSON.parse(localStorage.getItem('carrito')) || [];
-
+let carritoProductos = JSON.parse(localStorage.getItem('carrito')) || [];
 function imprimirProductosEnArticulos(productos, nombreContenedor) {
     const contenedor = document.getElementById(nombreContenedor);
 	for (const producto of productos) {
@@ -81,10 +80,13 @@ function agregarAlCarrito(producto){
     carritoProductos.push(producto);
     localStorage.setItem('carrito', JSON.stringify(carritoProductos));
 }
-function actualizarCarritoEnPantalla() {
+function actualizarCarritoEnPantalla(pago) {
   const contenedor = document.getElementById("carritoArticulos");
   contenedor.innerHTML = ""; 
-
+  if (carritoProductos.length === 0 && pago === 1){
+    contenedor.innerHTML = "<p class='text-center'>Gracias por su compra.</p>";
+    return;
+  }
   if (carritoProductos.length === 0) {
       contenedor.innerHTML = "<p class='text-center'>Tu carrito está vacío.</p>";
       return;
@@ -108,9 +110,14 @@ function actualizarCarritoEnPantalla() {
   }
   if (precioTotal > 0) {
     const total = document.createElement("p");
-    total.classList.add("fs-5", "roboto-mono");
+    const botonPagar = document.createElement("button");
+    total.classList.add("fs-5", "roboto-mono", "ms-5");
+    botonPagar.classList.add("btn", "btn-danger", "bgd", "ms-5");
+    botonPagar.textContent = `Pagar`;
     total.textContent = `Precio total del Pedido: ${precioTotal}`;
     contenedor.appendChild(total);
+    contenedor.appendChild(botonPagar);
+    botonPagar.addEventListener("click", () => pagado())
   }
 }
 function removerDelCarrito(producto) {
@@ -118,8 +125,13 @@ function removerDelCarrito(producto) {
   if (index !== -1) {
       carritoProductos.splice(index, 1);
       localStorage.setItem('carrito', JSON.stringify(carritoProductos));
-      actualizarCarritoEnPantalla();
+      actualizarCarritoEnPantalla(0);
   }
+}
+function pagado(){
+  localStorage.removeItem('carrito');
+  carritoProductos.length = 0;
+  actualizarCarritoEnPantalla(1);
 }
 if (location.pathname.endsWith("menu.html")){
     imprimirProductosEnArticulos(burgas, "burgas-container")
@@ -127,5 +139,5 @@ if (location.pathname.endsWith("menu.html")){
     imprimirProductosEnArticulos(bebidas, "bebidas-container")
 }
 if (location.pathname.endsWith("carrito.html")){
-    actualizarCarritoEnPantalla()
+    actualizarCarritoEnPantalla(0)
 }
